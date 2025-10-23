@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CU Shop — Мой магазин</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  .logo img { height: 38px; margin-right: 8px; vertical-align: middle; }
+  .logo span { vertical-align: middle; font-weight: 700; font-size: 20px; color:#333 }
+  .hero { background:linear-gradient(135deg,#fff 0%,#fff8f2 100%); padding:40px; border-radius:18px; text-align:left; box-shadow:0 6px 20px rgba(0,0,0,0.05); }
+  .hero h1 { font-size:48px; color:#ff7b00; margin:6px 0; }
+  .hero .subtitle { color:#555; font-size:18px; }
+  .footer { text-align:center; color:#888; font-size:14px; padding:24px; margin-top:40px; border-top:1px solid #f0f0f0; }
+  .footer a { color:#ff7b00; text-decoration:none; margin:0 8px; }
+  .fade-in { opacity:0; transform:translateY(30px); transition:opacity .6s ease, transform .6s ease; }
+  .fade-in.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="left">
+    <div class="logo"><img src="Logo.png" alt="CU Shop Logo"><span>CU Shop</span></div>
+    <nav class="nav">
+      <a href="#about">О нас</a>
+      <a href="#clothes">Одежда CU</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </div>
+  <div class="center">
+    <input id="search" placeholder="Поиск товаров..." />
+  </div>
+  <div class="right">
+    <button id="cartBtn" class="cart">Корзина <span id="cartCount">0</span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero fade-in">
+    <h1>Для студентов</h1>
+    <p class="subtitle">CU Shop — всё, что нужно студенту Каспийского Общественного Университета</p>
+  </section>
+
+  <section id="products" class="products-grid fade-in"></section>
+
+  <section id="clothes" class="clothes fade-in">
+    <h2>Одежда CU</h2>
+    <div class="clothes-grid">
+      <div class="product-card">
+        <img src="images/shirt_model.png" alt="Футболка Caspian University">
+        <h3>Футболка “Caspian University”</h3>
+        <p class="price">5 000 ₸</p>
+        <button class="add" data-id="p_shirt_1">Добавить в корзину</button>
+      </div>
+      <div class="product-card">
+        <img src="images/sweatshirt.png" alt="Свитшот CU Since 1992">
+        <h3>Свитшот “CU Since 1992”</h3>
+        <p class="price">8 500 ₸</p>
+        <button class="add" data-id="p_sweat_1">Добавить в корзину</button>
+      </div>
+      <div class="product-card">
+        <img src="images/shirt_hanger.png" alt="Футболка CU Black Edition">
+        <h3>Футболка “CU Black Edition”</h3>
+        <p class="price">6 000 ₸</p>
+        <button class="add" data-id="p_shirt_2">Добавить в корзину</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about fade-in">
+    <h2>О нас</h2>
+    <p><strong>CU Shop</strong> — это онлайн-магазин, созданный специально для студентов <strong>Каспийского Общественного Университета</strong>. Здесь вы найдёте всё необходимое для учёбы и повседневной жизни: канцелярию, электронику, одежду с логотипом и аксессуары. Мы заботимся о качестве, удобстве и доступных ценах для студентов.</p>
+  </section>
+
+  <section id="contacts" class="contacts fade-in">
+    <h2>Контакты</h2>
+    <p>Телефон: <strong>*** 775 0401351</strong></p>
+    <p>Email: <em>info@cushop.example</em></p>
+  </section>
+</main>
+
+<footer class="footer fade-in">
+  <p>© 2025 CU Shop. Все права защищены.</p>
+  <p><a href="#">Instagram</a>·<a href="#">Telegram</a>·<a href="#">VK</a></p>
+</footer>
+
+<aside id="cartSidebar" class="cart-sidebar">
+  <div class="cart-header">
+    <h3>Ваша корзина</h3>
+    <button id="closeCart" class="close">✕</button>
+  </div>
+  <div id="cartItems" class="cart-items"></div>
+  <div class="cart-footer">
+    <div class="total">Итого: <span id="cartTotal">0 ₸</span></div>
+    <button id="checkout" class="checkout">Оформить заказ</button>
+  </div>
+</aside>
+
+<script src="script.js"></script>
+<script>
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); } });
+}, {threshold:0.2});
+fadeEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
